@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Budgetly - Login</title>
+  <style>
+    :root {
+      --primary: #312e81;   /* Deep indigo */
+      --bgfade: #f1f5f9;    /* Slate-100 */
+      --accent1: #0ea5e9;   /* Sky-500 */
+      --accent2: #10b981;   /* Emerald-500 */
+      --accent3: #f43f5e;   /* Rose-500 */
+      --accent4: #a21caf;   /* Violet-700 */
+      --card:    #f9fafb;   /* Gray-50 */
+      --white: #fff;
+      --gray: #64748b;
+    }
+    body {
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', 'Poppins', Arial, sans-serif;
+      background: linear-gradient(135deg, var(--primary), #a5b4fc 70%, var(--bgfade) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gray);
+    }
+    .login-container {
+      background: var(--card);
+      border-radius: 2rem;
+      box-shadow: 0 10px 38px #02020218, 0 1px 8px #a21caf20;
+      padding: 3rem 2.2rem 2.5rem 2.2rem;
+      max-width: 400px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h2 {
+      font-size: 2.3rem;
+      color: var(--primary);
+      font-weight: 900;
+      margin: 0 0 0.6rem 0;
+      letter-spacing: -.5px;
+      text-align: center;
+    }
+    .login-container p {
+      color: #676787;
+      font-size: 1.05rem;
+      margin: 0 0 1.8rem 0;
+      text-align: center;
+      max-width: 18rem;
+    }
+    form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    label {
+      font-weight: 600;
+      font-size: .98rem;
+      margin-bottom: 0.28em;
+      color: var(--primary);
+      display: block;
+    }
+    input[type="email"], input[type="password"] {
+      width: 100%;
+      padding: 1rem .9rem;
+      border-radius: 1rem;
+      border: 1.5px solid #e0e7ff;
+      background: #f1f5f9;
+      color: #22223b;
+      font-size: 1.05rem;
+      transition: border 0.2s, box-shadow 0.2s;
+      font-family: inherit;
+      outline: none;
+    }
+    input[type="email"]:focus, input[type="password"]:focus {
+      border-color: var(--accent1);
+      box-shadow: 0 0 0 2.5px #0ea5e945;
+    }
+    .btn-login {
+      width: 100%;
+      padding: 1rem 0;
+      border: none;
+      border-radius: 1rem;
+      background: linear-gradient(90deg, var(--accent1), var(--accent4) 80%);
+      color: #fff;
+      font-size: 1.15rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 3px 16px #0ea5e930;
+      transition: background 0.18s, box-shadow 0.18s, transform 0.14s;
+      margin-top: 0.4rem;
+      letter-spacing: 0.3px;
+    }
+    .btn-login:hover, .btn-login:focus {
+      background: linear-gradient(90deg, var(--accent4), var(--accent1) 80%);
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 8px 25px #a21caf22;
+    }
+    .error-message {
+      color: var(--accent3);
+      background: #f8d7da;
+      border-radius: 8px;
+      margin-top: -.8rem;
+      margin-bottom: 1rem;
+      padding: 0.7em 1.2em;
+      text-align: center;
+      font-size: 1rem;
+      display: none;
+      animation: fadein 0.7s;
+    }
+    @keyframes fadein {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .loginswitch {
+      margin-top: 1.8em;
+      text-align: center;
+      font-size: 1rem;
+      color: #4b5563;
+    }
+    .loginswitch a {
+      color: var(--accent1);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.17s;
+    }
+    .loginswitch a:hover { color: var(--accent4);}
+    @media (max-width: 470px) {
+      .login-container { padding: 2.1rem 0.8rem 2.1rem 0.8rem;}
+      h2 { font-size: 1.6rem;}
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h2>Welcome Back!</h2>
+    <p>Sign in with your email to access <strong>Budgetly</strong>.</p>
+    <form id="loginForm" autocomplete="off">
+      <div>
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="you@example.com" required />
+      </div>
+      <div>
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Your password" required />
+      </div>
+      <div id="errMsg" class="error-message"></div>
+      <button type="submit" class="btn-login" id="loginBtn">Sign In</button>
+    </form>
+    <div class="loginswitch">
+      New to Budgetly?
+      <a href="signup.html">Create an Account</a>
+    </div>
+  </div>
+  <script>
+    // For demo: Predefined user (set this via your signup page or hardcode for demo)
+    // localStorage.setItem('users', JSON.stringify([{email:'sudhi@example.com', password:'123456', username:'Sudhi'}]));
+
+    // On login form submit
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value.trim().toLowerCase();
+      const password = document.getElementById('password').value;
+      const errMsg = document.getElementById('errMsg');
+      errMsg.style.display = "none";
+
+      // Simulate login with localStorage "users"
+      const users = JSON.parse(localStorage.getItem('users') || "[]");
+      const user = users.find(u => u.email.toLowerCase() === email && u.password === password);
+
+      if (user) {
+        // Set username in localStorage for greeting
+        localStorage.setItem('ai-username', user.username);
+        // Go to dashboard
+        window.location.href = "dashboard.html";
+      } else {
+        errMsg.textContent = "Invalid email or password.";
+        errMsg.style.display = "block";
+      }
+    });
+
+    // Optional: If just logged in, show greeting on dashboard
+    // On dashboard.html: 
+    // const uname = localStorage.getItem('ai-username');
+    // document.querySelector('h2').textContent = `Welcome, ${uname} 👋`;
+  </script>
+</body>
+</html>
