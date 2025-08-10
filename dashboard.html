@@ -288,89 +288,88 @@
       }
     }
 
-/* Profile Modal Enhancements */
-#profileModal .modal-box {
-  max-width: 480px;
-  padding: 36px 40px;
-  background: linear-gradient(135deg, #e0e7ff, #d1fae5);
-  border-radius: 22px;
-  box-shadow:
-    0 12px 30px rgb(97 97 191 / 0.4),
-    0 4px 15px rgb(72 72 158 / 0.3);
-  color: #2c3e50;
-  font-weight: 600;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+    /* Profile Modal Enhancements */
+    #profileModal .modal-box {
+      max-width: 480px;
+      padding: 36px 40px;
+      background: linear-gradient(135deg, #e0e7ff, #d1fae5);
+      border-radius: 22px;
+      box-shadow:
+        0 12px 30px rgb(97 97 191 / 0.4),
+        0 4px 15px rgb(72 72 158 / 0.3);
+      color: #2c3e50;
+      font-weight: 600;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 
-#profileModal .modal-box h3 {
-  font-size: 1.7rem;
-  margin-bottom: 28px;
-  color: #312e81;
-  font-weight: 700;
-  text-align: center;
-  letter-spacing: 0.02em;
-  text-shadow: 0 1px 3px #b0b8ff;
-}
+    #profileModal .modal-box h3 {
+      font-size: 1.7rem;
+      margin-bottom: 28px;
+      color: #312e81;
+      font-weight: 700;
+      text-align: center;
+      letter-spacing: 0.02em;
+      text-shadow: 0 1px 3px #b0b8ff;
+    }
 
-#profileModal form {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
+    #profileModal form {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
 
-#profileModal input {
-  padding: 14px 20px;
-  font-size: 1.1rem;
-  border-radius: 14px;
-  border: 2px solid #9ca3af;
-  transition: border-color 0.3s, box-shadow 0.3s;
-  outline: none;
-  font-weight: 500;
-  font-family: 'Poppins', sans-serif;
-}
+    #profileModal input {
+      padding: 14px 20px;
+      font-size: 1.1rem;
+      border-radius: 14px;
+      border: 2px solid #9ca3af;
+      transition: border-color 0.3s, box-shadow 0.3s;
+      outline: none;
+      font-weight: 500;
+      font-family: 'Poppins', sans-serif;
+    }
 
-#profileModal input:focus {
-  border-color: var(--accent1);
-  box-shadow: 0 0 8px var(--accent1);
-}
+    #profileModal input:focus {
+      border-color: var(--accent1);
+      box-shadow: 0 0 8px var(--accent1);
+    }
 
-#profileModal .modal-actions {
-  justify-content: center;
-  gap: 24px;
-  margin-top: 8px;
-}
+    #profileModal .modal-actions {
+      justify-content: center;
+      gap: 24px;
+      margin-top: 8px;
+    }
 
-#profileModal .save-btn {
-  background: var(--accent2);
-  padding: 14px 32px;
-  font-size: 1.1rem;
-  border-radius: 16px;
-  box-shadow: 0 6px 16px #154a2baa;
-  transition: background 0.25s ease, box-shadow 0.25s ease;
-}
+    #profileModal .save-btn {
+      background: var(--accent2);
+      padding: 14px 32px;
+      font-size: 1.1rem;
+      border-radius: 16px;
+      box-shadow: 0 6px 16px #154a2baa;
+      transition: background 0.25s ease, box-shadow 0.25s ease;
+    }
 
-#profileModal .save-btn:hover {
-  background: #0c3a23;
-  box-shadow: 0 9px 22px #154a2bcc;
-}
+    #profileModal .save-btn:hover {
+      background: #0c3a23;
+      box-shadow: 0 9px 22px #154a2bcc;
+    }
 
-#profileModal .cancel-btn {
-  background: #f3f4f6;
-  color: #4b5563;
-  padding: 14px 32px;
-  font-size: 1.1rem;
-  border-radius: 16px;
-  border: 1.8px solid #d1d5db;
-  font-weight: 600;
-  transition: background 0.25s ease, color 0.25s ease;
-}
+    #profileModal .cancel-btn {
+      background: #f3f4f6;
+      color: #4b5563;
+      padding: 14px 32px;
+      font-size: 1.1rem;
+      border-radius: 16px;
+      border: 1.8px solid #d1d5db;
+      font-weight: 600;
+      transition: background 0.25s ease, color 0.25s ease;
+    }
 
-#profileModal .cancel-btn:hover {
-  background: #e5e7eb;
-  color: #111827;
-  border-color: #9ca3af;
-}
-
+    #profileModal .cancel-btn:hover {
+      background: #e5e7eb;
+      color: #111827;
+      border-color: #9ca3af;
+    }
   </style>
 </head>
 <body>
@@ -449,8 +448,8 @@
         <form id="profileForm">
           <input type="text" id="profileName" placeholder="Your Name" required />
           <input type="email" id="profileEmail" placeholder="Your Email" required />
-          <input type="Budget Goal" id="profileEmail" placeholder="Your Goal" required />
-        <div class="modal-actions">
+          <input type="number" id="budgetGoal" placeholder="Your Goal (e.g. 10000)" required min="1" />
+          <div class="modal-actions">
             <button type="submit" class="save-btn">Update</button>
             <button type="button" id="cancelProfile" class="cancel-btn">Cancel</button>
           </div>
@@ -499,133 +498,104 @@
     };
     cancelProfileBtn.onclick = () => (profileModal.style.display = 'none');
 
-    // Calculate totals and category breakdown dynamically from entries
-    function calculateTotals() {
-      let incomeTotal = 0;
-      let expenseTotal = 0;
-      const categories = {};
+    // Close modals when clicking outside modal box
+    window.onclick = e => {
+      if (e.target === entryModal) entryModal.style.display = 'none';
+      if (e.target === profileModal) profileModal.style.display = 'none';
+    };
 
-      entries.forEach((entry) => {
-        if (entry.type === 'income') {
-          incomeTotal += entry.amount;
-        } else if (entry.type === 'expense') {
-          expenseTotal += entry.amount;
-          // Category by title, use "Others" if blank
-          let cat = entry.title.trim() || 'Others';
-          // Capitalize first letter
-          cat = cat.charAt(0).toUpperCase() + cat.slice(1).toLowerCase();
-          categories[cat] = (categories[cat] || 0) + entry.amount;
-        }
-      });
+    // Save profile form
+    profileForm.onsubmit = e => {
+      e.preventDefault();
+      userName = document.getElementById('profileName').value.trim();
+      userEmail = document.getElementById('profileEmail').value.trim();
+      budgetGoal = parseInt(document.getElementById('budgetGoal').value);
 
-      return { incomeTotal, expenseTotal, categories };
-    }
-
-    // Render category summary list
-    function renderCategoriesSummary(categories) {
-      categoriesSummary.innerHTML = '';
-      const keys = Object.keys(categories);
-      if (keys.length === 0) {
-        categoriesSummary.textContent = 'No expense entries yet.';
+      if (!userName || !userEmail || !budgetGoal || budgetGoal <= 0) {
+        alert('Please fill all fields correctly.');
         return;
       }
-      keys.sort();
-      keys.forEach((cat) => {
-        const catDiv = document.createElement('div');
-        catDiv.style.display = 'flex';
-        catDiv.style.justifyContent = 'space-between';
-        catDiv.style.padding = '6px 0';
-        catDiv.style.borderBottom = '1px solid #ddd';
 
-        const catName = document.createElement('strong');
-        catName.textContent = cat;
+      localStorage.setItem('ai-username', userName);
+      localStorage.setItem('ai-email', userEmail);
+      localStorage.setItem('ai-budget-goal', budgetGoal);
 
-        const catAmount = document.createElement('span');
-        catAmount.textContent = `₹${categories[cat].toFixed(2)}`;
+      updateDashboard();
+      profileModal.style.display = 'none';
+    };
 
-        catDiv.appendChild(catName);
-        catDiv.appendChild(catAmount);
-        categoriesSummary.appendChild(catDiv);
-      });
-    }
+    // Add new entry form submit
+    entryForm.onsubmit = e => {
+      e.preventDefault();
+      const title = document.getElementById('entryTitle').value.trim();
+      const amount = parseFloat(document.getElementById('entryAmount').value);
+      const type = document.getElementById('entryType').value;
 
-    // Update dashboard UI
+      if (!title || isNaN(amount) || amount <= 0 || !type) {
+        alert('Please fill all fields correctly.');
+        return;
+      }
+
+      entries.push({ title, amount, type });
+      localStorage.setItem('budgetly-entries', JSON.stringify(entries));
+      entryForm.reset();
+      entryModal.style.display = 'none';
+      updateDashboard();
+    };
+
+    // Update dashboard with entries & profile info
     function updateDashboard() {
-      const { incomeTotal, expenseTotal, categories } = calculateTotals();
+      // Update user name
+      nameElement.textContent = userName;
 
-      incomeElem.textContent = `₹${incomeTotal.toFixed(2)}`;
-      expenseElem.textContent = `₹${expenseTotal.toFixed(2)}`;
-      const remaining = incomeTotal - expenseTotal;
+      // Calculate totals
+      let totalIncome = 0,
+        totalExpense = 0;
+      let categoryTotals = {};
+
+      entries.forEach(entry => {
+        if (entry.type === 'income') totalIncome += entry.amount;
+        else totalExpense += entry.amount;
+
+        // Sum categories for summary
+        if (!categoryTotals[entry.title]) categoryTotals[entry.title] = 0;
+        categoryTotals[entry.title] += entry.amount;
+      });
+
+      // Update summary cards
+      incomeElem.textContent = `₹${totalIncome.toFixed(2)}`;
+      expenseElem.textContent = `₹${totalExpense.toFixed(2)}`;
+      const remaining = totalIncome - totalExpense;
       remainingElem.textContent = `₹${remaining.toFixed(2)}`;
 
-      renderCategoriesSummary(categories);
+      // Update categories summary box
+      categoriesSummary.innerHTML = '';
+      for (const [cat, amt] of Object.entries(categoryTotals)) {
+        const percent = ((amt / (totalIncome + totalExpense || 1)) * 100).toFixed(1);
+        const bar = document.createElement('div');
+        bar.style.marginBottom = '10px';
+        bar.innerHTML = `
+          <strong>${cat}</strong>: ₹${amt.toFixed(2)} (${percent}%)
+          <div class="progressbar-bg" style="margin-top:6px;">
+            <div class="progressbar-fill" style="width:${percent}%; background: var(--accent1); height: 12px;"></div>
+          </div>
+        `;
+        categoriesSummary.appendChild(bar);
+      }
 
-      const usedPercent = budgetGoal > 0 ? Math.min((expenseTotal / budgetGoal) * 100, 100) : 0;
-      progressFill.style.width = `${usedPercent}%`;
+      // Update budget goal progress
+      goalAmt.textContent = `₹${budgetGoal.toLocaleString()}`;
+      let usedPercent = 0;
+      if (budgetGoal > 0) {
+        usedPercent = ((totalExpense / budgetGoal) * 100);
+        if (usedPercent > 100) usedPercent = 100;
+      }
       goalText.textContent = `${usedPercent.toFixed(1)}%`;
-      goalAmt.textContent = `₹${budgetGoal}`;
-
-      // Save entries persistently
-      localStorage.setItem('budgetly-entries', JSON.stringify(entries));
+      progressFill.style.width = `${usedPercent}%`;
     }
 
-    // Handle new entry form submit
-    entryForm.onsubmit = (e) => {
-      e.preventDefault();
-      const titleInput = document.getElementById('entryTitle');
-      const amountInput = document.getElementById('entryAmount');
-      const typeInput = document.getElementById('entryType');
-
-      const title = titleInput.value.trim();
-      const amount = parseFloat(amountInput.value);
-      const type = typeInput.value;
-
-      if (title && !isNaN(amount) && amount > 0 && type) {
-        entries.push({ title, amount, type });
-        updateDashboard();
-        alert(`✅ ${type.toUpperCase()} of ₹${amount} added for "${title}"`);
-        entryModal.style.display = 'none';
-        entryForm.reset();
-      }
-    };
-
-    // Handle profile form submit
-    profileForm.onsubmit = (e) => {
-      e.preventDefault();
-      const newName = document.getElementById('profileName').value.trim();
-      const newEmail = document.getElementById('profileEmail').value.trim();
-      const newGoal = parseInt(document.getElementById('budgetGoal').value);
-
-      if (newName && newEmail && newGoal > 0) {
-        userName = newName;
-        userEmail = newEmail;
-        budgetGoal = newGoal;
-
-        localStorage.setItem('ai-username', userName);
-        localStorage.setItem('ai-email', userEmail);
-        localStorage.setItem('ai-budget-goal', budgetGoal);
-
-        nameElement.textContent = userName;
-        updateDashboard();
-        alert('✅ Profile updated!');
-        profileModal.style.display = 'none';
-      }
-    };
-
-    // Initialize UI on load
-    function init() {
-      nameElement.textContent = userName;
-      goalAmt.textContent = `₹${budgetGoal}`;
-      updateDashboard();
-    }
-    init();
-
-    // Close modals when clicking outside modal content
-    window.onclick = (event) => {
-      if (event.target === entryModal) entryModal.style.display = 'none';
-      if (event.target === profileModal) profileModal.style.display = 'none';
-    };
+    // Initial render
+    updateDashboard();
   </script>
 </body>
 </html>
-
